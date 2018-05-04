@@ -1,0 +1,163 @@
+<!doctype html>               <!--申明html文档-->
+<html>
+<head>
+    <meta charset="utf-8">      <!--字符编码为国际编码-->
+    <meta name="Author" content="40期风屿JS——不懂就问">    <!--网页创建者-->
+    <meta name="Keywords" content="作业，练习题">         <!--供搜索引擎搜索匹配的关键-->
+    <meta name="description" content="课后练习题作业，熟悉课堂学习操作">  <!--在搜索有结果页面显示的网页描述-->
+    <title>第14次作业-查找替换</title>   <!--网页标题-->
+    <!--
+          <link rel="stylesheet" type="text/css" href="css/common.css">
+          <link rel="stylesheet" type="text/css" href="css/index.css">
+          <link rel="stylesheet" type="text/css" href="font/iconfont.css">
+          <link rel="stylesheet" type="text/css" href="css/swiper.min.css">
+          -->
+    <style>
+        body, p, ul, dl, dd, ol, h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+
+        ul, ol {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0;
+        }
+
+        em, i {
+            font-style: normal; /*设置字体样式：正常显示（就是不倾斜）*/
+        }
+
+        strong, b {
+            font-weight: normal; /*设置字体加粗：正常显示（就是不加粗）*/
+        }
+
+        a {
+            text-decoration: none; /*去掉下划线*/
+        }
+        div{
+            width: 800px;
+            margin: 80px auto;
+            padding: 5px;
+            border: 2px solid #faffeb;
+            background-color: #c6c6c6;
+            font-size: 16px;
+            line-height: 20px;
+        }
+        ul{
+            background-color: #666666;
+        }
+        li{
+            float: left;
+            height: 50px;
+            padding-left: 20px;
+            line-height: 50px;
+
+        }
+        input{
+            width: 200px;
+        }
+        button{
+            width: 100px;
+            background-color: #c6c6c6;
+        }
+        input,button{
+            height:30px;
+            border: 1px solid aquamarine;
+        }
+        span{
+            color: crimson;
+        }
+        .clearfix:after{
+            display:block;
+            content: "";
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul class="clearfix">
+            <li>
+                <input type="text" placeholder="输入查找内容" value="">
+                <button type="button">查找全部</button>
+                <button type="button">查找下一个</button>
+            </li>
+            <li>
+                <input type="text" placeholder="输入替换内容">
+                <button type="button">替换全部</button>
+                <button type="button">替换下一个</button>
+            </li>
+        </ul>
+        <p>
+            111111马克思1111122222222222马克思22223马克思333333333333333马克思33444444444马克思44444555555马克思 55556
+        </p>
+
+    </div>
+
+<script>
+    var tex = document.getElementsByTagName("p")[0],
+        input = document.getElementsByTagName("input"),
+        but = document.getElementsByTagName("button"),
+        texLen = tex.length,
+        texFind = input[0].value,
+        texReplace,
+        text = tex.innerHTML;
+    // console.log(texFind);
+    // console.log(text);
+    // 实现查找全部
+        but[0].onclick = function () {
+            var str = findAll(text,texFind);
+            tex.innerHTML = str;
+        };
+
+        // 封装，点击查找全部；
+    function findAll (text,texFind) {
+        // 去掉空格
+        texFind = texFind.trim();
+        text = text.trim();
+        //console.log(texFind);
+        //console.log(text);
+        var strE = text,
+            strS,
+            str = '';
+        //console.log(strE);
+        // 首先判断是否存该字符串
+        if (strE.indexOf(texFind,0) >= 0) {
+            for (var i = 0; i < strE.length;) {
+                // 得到匹配到字符串的的开始位置
+                var m = strE.indexOf(texFind, 0);
+                //console.log(m);
+                // 得到匹配字符的的结束位置，
+                i = m + texFind.length;
+                // 截取字符串，在开始位置和结束位置插入<span>标签，
+                strS = strE.substring(0, m) + '<span>' + texFind + '</span>';
+                // 截取剩余字符串，下次在剩余字符串中继续匹配，
+                strE = strE.substring(i);
+                // 将匹配过的字符拼接起来；
+                str += strS;
+
+            }
+            // 将剩余没有匹配到的字符拼接
+            if (strE.length) {
+                str += strE;
+                console.log(str);
+            }
+        }else {
+            alert("该内容不存在");
+        }
+        return str;
+        // tex.innerHTML = str.substring(9);
+        // console.log(str);
+    }
+
+
+</script>
+</body>
+</html>
