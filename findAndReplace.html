@@ -85,7 +85,7 @@
     <div>
         <ul class="clearfix">
             <li>
-                <input type="text" placeholder="输入查找内容" value="">
+                <input type="text" placeholder="输入查找内容">
                 <button type="button">查找全部</button>
                 <button type="button">查找下一个</button>
             </li>
@@ -105,19 +105,13 @@
     var tex = document.getElementsByTagName("p")[0],
         input = document.getElementsByTagName("input"),
         but = document.getElementsByTagName("button"),
-        texLen = tex.length,
+        texLen = tex.innerHTML.length,
         texFind = input[0].value,
         texReplace,
-        text = tex.innerHTML;
+        textO = tex.innerHTML;
+    console.log(texLen);
     // console.log(texFind);
-    // console.log(text);
-    // 实现查找全部
-        but[0].onclick = function () {
-            var str = findAll(text,texFind);
-            tex.innerHTML = str;
-        };
-
-        // 封装，点击查找全部；
+    // 封装，点击查找全部；
     function findAll (text,texFind) {
         // 去掉空格
         texFind = texFind.trim();
@@ -156,8 +150,49 @@
         // tex.innerHTML = str.substring(9);
         // console.log(str);
     }
+    // 封装，点击查找下一个；
+    function replaceAll (text,texFind,texReplace) {
+        var str;
+        console.log(1111);
+        console.log(text.indexOf(texFind,0));
+        for (var i = 0; i < texLen; i++) {
+            console.log(text.indexOf(texFind,0));
 
+            if (text.indexOf(texFind,0) >= 0) {
+                 text = text.replace(texFind,texReplace);
+                console.log(text.indexOf(texFind,0));
+                str = text;
+                 console.log(str);
+                //console.log(1111);
+            }else {
+                 str = text ;
+                console.log(str);
+                console.log(1111);
+                 break;
+            }
+        }
+        return str;
+    }
+    // 实现查找全部
+    but[0].onclick = function () {
+        texFind = input[0].value;
+        // 判断查询内容是否为空
+        if (texFind) {
+            var str = findAll(textO,texFind);
+            tex.innerHTML = str;
+        }else tex.innerHTML = textO;
+    };
+    // 实现替换全部
+    but[2].onclick = function () {
+        texFind = input[0].value;
+        texReplace = input[1].value;
 
+        console.log(texFind);
+        console.log(texReplace);
+       // console.log(textO);
+        var  str = replaceAll(textO,texFind,texReplace);
+        tex.innerHTML = str;
+    }
 </script>
 </body>
 </html>
