@@ -109,7 +109,7 @@
         texFind = input[0].value,
         texReplace,
         textO = tex.innerHTML;
-    console.log(texLen);
+
     // console.log(texFind);
     // 封装，点击查找全部；
     function findAll (text,texFind) {
@@ -150,24 +150,16 @@
         // tex.innerHTML = str.substring(9);
         // console.log(str);
     }
-    // 封装，点击查找下一个；
+    // 封装，点击替换全部；
     function replaceAll (text,texFind,texReplace) {
         var str;
-        console.log(1111);
-        console.log(text.indexOf(texFind,0));
         for (var i = 0; i < texLen; i++) {
-            console.log(text.indexOf(texFind,0));
-
             if (text.indexOf(texFind,0) >= 0) {
                  text = text.replace(texFind,texReplace);
-                console.log(text.indexOf(texFind,0));
-                str = text;
-                 console.log(str);
-                //console.log(1111);
+                 str = text;
+
             }else {
                  str = text ;
-                console.log(str);
-                console.log(1111);
                  break;
             }
         }
@@ -186,9 +178,6 @@
     but[2].onclick = function () {
         texFind = input[0].value;
         texReplace = input[1].value;
-
-        console.log(texFind);
-        console.log(texReplace);
        // console.log(textO);
         var  str = replaceAll(textO,texFind,texReplace);
         tex.innerHTML = str;
