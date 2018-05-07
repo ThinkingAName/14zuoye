@@ -155,16 +155,32 @@
         var str;
         for (var i = 0; i < texLen; i++) {
             if (text.indexOf(texFind,0) >= 0) {
-                 text = text.replace(texFind,texReplace);
-                 str = text;
+                text = text.replace(texFind,texReplace);
+                str = text;
 
             }else {
-                 str = text ;
-                 break;
+                str = text ;
+                break;
             }
         }
         return str;
     }
+    // 封装，点击查找下一个；
+    function findNext (text,texFind) {
+        var str;
+        for (var i = 0; i < texLen; i++) {
+            if (text.indexOf(texFind,0) >= 0) {
+                text = text.replace(texFind,texReplace);
+                str = text;
+
+            }else {
+                str = text ;
+                break;
+            }
+        }
+        return str;
+    }
+
     // 实现查找全部
     but[0].onclick = function () {
         texFind = input[0].value;
