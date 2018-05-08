@@ -96,7 +96,7 @@
             </li>
         </ul>
         <p>
-            111111马克思1111122222222222马克思22223马克思333333333333333马克思33444444444马克思44444555555马克思 55556
+            111111马克思1111122222222222马克思22223马克思333333333333333马克思33444444444马克思44444555555马克思ddasff
         </p>
 
     </div>
@@ -108,6 +108,7 @@
         texLen = tex.innerHTML.length,
         texFind = input[0].value,
         texReplace,
+        positionNum = 0,
         textO = tex.innerHTML;
 
     // console.log(texFind);
@@ -166,21 +167,53 @@
         return str;
     }
     // 封装，点击查找下一个；
-    function findNext (text,texFind) {
-        var str;
-        for (var i = 0; i < texLen; i++) {
-            if (text.indexOf(texFind,0) >= 0) {
-                text = text.replace(texFind,texReplace);
-                str = text;
+    function findNext(text, texFind) {
+            var str;
+            if (text.indexOf(texFind,  positionNum) >= 0) {
+                positionNum = text.indexOf(texFind,positionNum)
+                str = text.substring(0,  positionNum) + '<span>' + texFind + '</span>' + text.substring( positionNum + texFind.length);
+                positionNum =  positionNum + texFind.length;
+                console.log( positionNum);
 
-            }else {
-                str = text ;
-                break;
+            } else {
+                alert("未找到内容");
+                str = text;
             }
+
+            return str;
+         }
+    // 封装，点击替换下一个，
+    function replacNext (text,texFind,texReplace) {
+        var str;
+        if (text.indexOf(texFind,  positionNum) >= 0) {
+            positionNum = text.indexOf(texFind,positionNum);
+            str = text.substring(0,  positionNum) + '<span>' + texReplace + '</span>' + text.substring( positionNum + texFind.length);
+            positionNum =  positionNum + texFind.length;
+            console.log( positionNum);
+
+        } else {
+            alert("未找到内容");
+            str = text;
         }
+
         return str;
     }
+    // 点击修改下一个
+    but[3].onclick = function () {
+        textO = tex.innerHTML;
+        texFind = input[0].value;
+        texReplace = input[1].value;
+        tex.innerHTML = replacNext(textO,texFind,texReplace);
 
+        console.log(positionNum);
+    }
+    // 点击查找下一个
+    but[1].onclick =  function () {
+        texFind = input[0].value;
+        tex.innerHTML = findNext(textO,texFind);
+
+        console.log(positionNum); // 后续完善findNext封装，让positionNum 直接从封装中返回，形成闭包，
+    };
     // 实现查找全部
     but[0].onclick = function () {
         texFind = input[0].value;
