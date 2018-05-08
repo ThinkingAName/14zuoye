@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b15a4328-7da4-4bf5-9a20-7a542e4d39e0" name="Default" comment="新增，查找下一个和替换下一个，待完善，&#10;存在 bug 每次闭包返回num 的问题，" />
+    <list default="true" id="b15a4328-7da4-4bf5-9a20-7a542e4d39e0" name="Default" comment="新增，查找下一个和替换下一个，待完善， 存每次闭包返num的问题，">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -126,7 +129,7 @@
       <updated>1525414839545</updated>
       <workItem from="1525414849421" duration="13220000" />
       <workItem from="1525664295789" duration="10357000" />
-      <workItem from="1525743351037" duration="7800000" />
+      <workItem from="1525743351037" duration="7939000" />
     </task>
     <task id="LOCAL-00001" summary="实现全部替换">
       <created>1525684603419</created>
@@ -160,7 +163,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31377000" />
+    <option name="totallyTimeSpent" value="31516000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="343" y="59" width="1346" height="692" extended-state="1" />
